@@ -1,3 +1,5 @@
+const $ = global.$
+
 export const withBinding = (target) => {
   return (store) => {
     Object.keys(target).forEach(prop => {
@@ -22,4 +24,18 @@ export const withBinding = (target) => {
       }
     })
   }
+}
+
+export const app = (store) => {
+  $(['[data-bind]']).each(function () {
+    var el = $(this)
+    var bindingStr = el.data('bind')
+    el.change(function () {
+      store.dispatch(bindingStr, el.val())
+    })
+
+    store.listen('@' + bindingStr, function (value) {
+      el.val(value)
+    })
+  })
 }

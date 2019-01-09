@@ -1,6 +1,7 @@
 import Store from './store'
 import {
-  withBinding
+  withBinding,
+  app
 } from './app'
 
 import './select'
@@ -37,19 +38,11 @@ const $ = global.$
 $(document).ready(() => {
   const store = new Store()
 
+  app(store)
+
   const product = withBinding({
     type: ''
   })(store)
-
-  const input = $('input')
-
-  store.listen('@type', (value) => {
-    input.val(value)
-  })
-
-  input.change(() => {
-    store.dispatch('type', input.val())
-  })
 
   $('.select').select({
     onChange: (value) => {
