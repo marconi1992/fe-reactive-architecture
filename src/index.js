@@ -1,4 +1,5 @@
-import Store from './store'
+// import Store from './store'
+import './select'
 
 const $ = global.$
 
@@ -30,31 +31,10 @@ const $ = global.$
  */
 
 $(document).ready(() => {
-  const store = new Store()
-
-  store.listen('itemSelected', (value) => {
-    console.info('itemSelected', value)
-  })
-
   const input = $('input')
-
-  store.listen('itemSelected', (value) => {
-    input.val(value)
-  })
-
-  const listItems = $('ul > li')
-
-  listItems.each((idx, el) => {
-    const li = $(el)
-    const value = li.data('value')
-    store.listen('itemSelected', (newValue) => {
-      li.toggleClass('active', value === newValue)
-    })
-  })
-
-  listItems.on('click', (evt) => {
-    const li = $(evt.target)
-    const value = li.data('value')
-    store.dispatch('itemSelected', value)
+  $('.select').select({
+    onChange: (value) => {
+      input.val(value)
+    }
   })
 })
