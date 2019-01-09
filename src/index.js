@@ -1,4 +1,8 @@
-// import Store from './store'
+import Store from './store'
+import {
+  withBinding
+} from './app'
+
 import './select'
 
 const $ = global.$
@@ -31,10 +35,29 @@ const $ = global.$
  */
 
 $(document).ready(() => {
+  const store = new Store()
+
+  const product = withBinding({
+    type: ''
+  })(store)
+
   const input = $('input')
+
+  store.listen('@type', (value) => {
+    input.val(value)
+  })
+
+  input.change(() => {
+    store.dispatch('type', input.val())
+  })
+
   $('.select').select({
     onChange: (value) => {
-      input.val(value)
+      product.type = value
     }
+  })
+
+  $('#saveBtn').on('click', () => {
+    console.log(product.type)
   })
 })
