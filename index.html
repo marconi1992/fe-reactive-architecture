@@ -5,8 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>FE Reactive Architecture</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: sans-serif;
+      }
+
+      ul {
+        padding: 0;
+      }
+
+      ul > li {
+        padding: 12px 8px;
+        border: 1px solid #333;
+        background: #fff;
+      }
+
+      ul > li.active {
+        background: #a2a2a2;
+      }
+
+    </style>
 </head>
 <body>
-    <h1>Hello World</h1>
+    <input type="text">
+    <ul>
+      <li data-value="music">Music</li>
+      <li data-value="electronics">Electronics</li>
+      <li data-value="books">Books</li>
+    </ul>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </body>
 </html>
